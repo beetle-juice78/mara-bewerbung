@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mara Bewerbung – Jasper</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Oswald:wght@300;400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1a3fff;
+    --blue-dark: #0d2acc;
+    --blue-glow: #3a5fff;
+    --bg: #070a14;
+    --bg2: #0c1020;
+    --bg3: #111828;
+    --text: #e8eaf6;
+    --muted: #7b8ccc;
+    --accent: #fff;
+    --border: rgba(26,63,255,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* BG texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(26,63,255,0.03) 40px, rgba(26,63,255,0.03) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(26,63,255,0.03) 40px, rgba(26,63,255,0.03) 41px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(26,63,255,0.18) 0%, transparent 70%);
+  }
+
+  .hero-gang {
+    font-family: 'Black Ops One', cursive;
+    font-size: clamp(48px, 10vw, 110px);
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-shadow: 0 0 40px rgba(26,63,255,0.8), 0 0 80px rgba(26,63,255,0.4);
+    position: relative;
+    animation: glitch 4s infinite;
+    line-height: 1;
+  }
+
+  @keyframes glitch {
+    0%, 92%, 100% { text-shadow: 0 0 40px rgba(26,63,255,0.8), 0 0 80px rgba(26,63,255,0.4); }
+    93% { text-shadow: -3px 0 #ff003c, 3px 0 var(--blue), 0 0 80px rgba(26,63,255,0.4); transform: skewX(-1deg); }
+    95% { text-shadow: 3px 0 #ff003c, -3px 0 var(--blue), 0 0 80px rgba(26,63,255,0.4); transform: skewX(1deg); }
+    97% { text-shadow: 0 0 40px rgba(26,63,255,0.8), 0 0 80px rgba(26,63,255,0.4); transform: skewX(0); }
+  }
+
+  .hero-sub {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(14px, 3vw, 22px);
+    letter-spacing: 8px;
+    color: var(--blue-glow);
+    text-transform: uppercase;
+    margin-top: 12px;
+    margin-bottom: 40px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(26,63,255,0.12);
+    border: 1px solid var(--blue);
+    border-radius: 4px;
+    padding: 10px 28px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--blue-glow);
+    text-transform: uppercase;
+  }
+
+  .hero-wave {
+    margin-top: 50px;
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(18px, 4vw, 28px);
+    letter-spacing: 3px;
+    color: var(--accent);
+    border-left: 4px solid var(--blue);
+    padding-left: 16px;
+    text-align: left;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--blue), transparent);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ─── LAYOUT ─── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── SECTION ─── */
+  .section {
+    padding: 70px 0;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-number {
+    font-family: 'Black Ops One', cursive;
+    font-size: 80px;
+    color: rgba(26,63,255,0.08);
+    line-height: 1;
+    position: absolute;
+    top: 60px;
+    right: 24px;
+    user-select: none;
+  }
+
+  .section-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--blue-glow);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: clamp(28px, 5vw, 48px);
+    color: var(--accent);
+    line-height: 1.1;
+    margin-bottom: 28px;
+  }
+
+  .section-title span {
+    color: var(--blue-glow);
+  }
+
+  /* ─── INFO CARDS ─── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .info-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--blue);
+    padding: 20px;
+    border-radius: 2px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .info-card:hover {
+    border-color: var(--blue-glow);
+    transform: translateY(-4px);
+  }
+
+  .info-card-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-family: 'Oswald', sans-serif;
+  }
+
+  .info-card-value {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  /* ─── TEXT BLOCK ─── */
+  .text-block {
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  /* ─── BULLET LIST ─── */
+  .bullet-list {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .bullet-list li {
+    padding: 10px 0 10px 28px;
+    position: relative;
+    color: var(--text);
+    font-size: 16px;
+    border-bottom: 1px solid rgba(26,63,255,0.1);
+  }
+
+  .bullet-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--blue-glow);
+    font-size: 14px;
+  }
+
+  .bullet-list li strong {
+    color: var(--accent);
+  }
+
+  /* ─── TABLE ─── */
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+  }
+
+  thead tr {
+    background: var(--blue-dark);
+  }
+
+  thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(26,63,255,0.12);
+    transition: background 0.2s;
+  }
+
+  tbody tr:nth-child(even) { background: rgba(26,63,255,0.04); }
+  tbody tr:hover { background: rgba(26,63,255,0.12); }
+
+  tbody td {
+    padding: 12px 16px;
+    color: var(--text);
+    border-right: 1px solid rgba(26,63,255,0.1);
+  }
+
+  .rank-num {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    color: var(--blue-glow);
+    font-size: 18px;
+  }
+
+  .rank-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .badge-leader { background: rgba(255,193,7,0.15); color: #ffc107; border: 1px solid #ffc10740; }
+  .badge-vize   { background: rgba(26,63,255,0.2);  color: #7b9fff; border: 1px solid #3a5fff40; }
+  .badge-high   { background: rgba(255,90,0,0.15);  color: #ff8c42; border: 1px solid #ff6a0040; }
+  .badge-mid    { background: rgba(100,200,100,0.12); color: #7ec880; border: 1px solid #5cb05c40; }
+  .badge-low    { background: rgba(150,150,150,0.12); color: #aaa;   border: 1px solid #66666640; }
+  .badge-straf  { background: rgba(220,50,50,0.15);  color: #ff6060; border: 1px solid #cc333340; }
+
+  .money-pos { color: #4cde80; font-weight: 700; font-family: 'Oswald', sans-serif; }
+  .money-neg { color: #ff5555; font-weight: 700; font-family: 'Oswald', sans-serif; }
+
+  /* ─── LEADERSCHAFT ─── */
+  .leader-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .leader-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .leader-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--blue-glow));
+  }
+
+  .leader-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--blue-glow);
+  }
+
+  .leader-role {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-glow);
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 10px;
+  }
+
+  .leader-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .leader-id {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ─── TIMELINE (Startplan) ─── */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 20px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 12px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--blue), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 12px var(--blue-glow);
+    border: 2px solid var(--bg);
+  }
+
+  .timeline-day {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--blue-glow);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .timeline-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: 22px;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    background: rgba(26,63,255,0.06);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--blue);
+    padding: 20px 24px;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: var(--text);
+    font-style: italic;
+  }
+
+  /* ─── CLOSING ─── */
+  .closing {
+    text-align: center;
+    padding: 80px 20px;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+  }
+
+  .closing-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: clamp(28px, 6vw, 56px);
+    color: var(--accent);
+    text-shadow: 0 0 30px rgba(26,63,255,0.6);
+    margin-bottom: 16px;
+  }
+
+  .closing-sub {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    letter-spacing: 4px;
+    color: var(--blue-glow);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .closing-sig {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 40px;
+    letter-spacing: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-gang">MARA</div>
+  <div class="hero-sub">Marabunta Grande · Bewerbung als Leader</div>
+  <div class="hero-badge">🌊 Die Blaue Welle kommt</div>
+  <div class="hero-wave" style="margin-top:40px">
+    Die aktivste & gefürchtetste Gang im Staat.<br>
+    <span style="color:var(--blue-glow);font-size:0.7em;letter-spacing:2px">Majestic RP · ID 40411</span>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ─── 1. INFOS ─── -->
+<section class="section">
+  <div class="container" style="position:relative">
+    <div class="section-number">01</div>
+    <div class="section-label">Kapitel 01</div>
+    <h2 class="section-title">Persönliche <span>Infos</span></h2>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-label">Name</div>
+        <div class="info-card-value">Jasper</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Alter</div>
+        <div class="info-card-value">18</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Spieler-ID</div>
+        <div class="info-card-value">#40411</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Aktiv seit</div>
+        <div class="info-card-value">~3 Jahre</div>
+      </div>
+    </div>
+
+    <ul class="bullet-list">
+      <li>Seit ca. <strong>3 Jahren aktiv auf Majestic RP</strong> (sehr engagiert), begonnen auf Grand RP DE 1</li>
+      <li>Häufig in <strong>Leaderschafts-Rollen</strong>: Event Manager, Vize-Leader in Crimes und States</li>
+      <li><strong>Vize</strong> in Crimes · <strong>Curator</strong> in States</li>
+      <li>Sehr gute Kenntnisse der <strong>Majestic-Regeln</strong></li>
+      <li>Ziel: <strong>Erstmals eine Crime-Fraktion selbst leiten</strong></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── 2. IC KONZEPT ─── -->
+<section class="section">
+  <div class="container" style="position:relative">
+    <div class="section-number">02</div>
+    <div class="section-label">Kapitel 02</div>
+    <h2 class="section-title">IC Infos & <span>Konzept</span></h2>
+
+    <div class="highlight-box">
+      „Die Mara werden die aktivste und gefürchtetste Gang im Staat – Dominanz durch maximale Aktivität und Präsenz."
+    </div>
+
+    <ul class="bullet-list">
+      <li><strong>Bankraube & Airdrops</strong> – Full Masse, volle Präsenz</li>
+      <li><strong>Überfälle</strong> auf Fort Zancudo & Cayo Perico</li>
+      <li><strong>Street-RP</strong> – Beefs mit Rivalen (Vagos, Families), Allianzen aufbauen</li>
+      <li><strong>Null Toleranz</strong> – keine Troller, nur loyale & aktive Members</li>
+    </ul>
+
+    <p class="text-block" style="font-family:'Oswald',sans-serif;font-size:20px;color:var(--blue-glow);letter-spacing:2px;text-align:center;margin-top:30px">
+      🌊 Die Blaue Welle wird alles übernehmen! 🌊
+    </p>
+  </div>
+</section>
+
+<!-- ─── 3. RANGSYSTEM ─── -->
+<section class="section">
+  <div class="container" style="position:relative">
+    <div class="section-number">03</div>
+    <div class="section-label">Kapitel 03</div>
+    <h2 class="section-title">Rang<span>system</span></h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Beschreibung</th>
+            <th>Kategorie</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="rank-num">18</td><td>OG</td><td>Leader der Fraktion</td><td><span class="rank-badge badge-leader">Leader</span></td></tr>
+          <tr><td class="rank-num">17</td><td>Vize OG</td><td>Vize der Fraktion</td><td><span class="rank-badge badge-vize">Vize</span></td></tr>
+          <tr><td class="rank-num">16</td><td>Turf Leader</td><td>Turf Leader</td><td><span class="rank-badge badge-vize">Turf Lead</span></td></tr>
+          <tr><td class="rank-num">15</td><td>Gang Manager</td><td>Events (AD, Bank etc.)</td><td><span class="rank-badge badge-high">Highrank</span></td></tr>
+          <tr><td class="rank-num">14</td><td>Recru Lead</td><td>Recru Lead</td><td><span class="rank-badge badge-high">Highrank</span></td></tr>
+          <tr><td class="rank-num">13</td><td>Manager</td><td>Event-Helfer & Rank-Ups</td><td><span class="rank-badge badge-high">Highrank</span></td></tr>
+          <tr><td class="rank-num">12</td><td>Over Boss</td><td>Achievements</td><td><span class="rank-badge badge-high">Highrank</span></td></tr>
+          <tr><td class="rank-num">11</td><td>Hood Boss</td><td>Vertrauensrang</td><td><span class="rank-badge badge-mid">Midrank</span></td></tr>
+          <tr><td class="rank-num">10</td><td>Master Mind</td><td>Ausgeber Rang</td><td><span class="rank-badge badge-mid">Midrank</span></td></tr>
+          <tr><td class="rank-num">9</td><td>Recruiter</td><td>Recru</td><td><span class="rank-badge badge-mid">Midrank</span></td></tr>
+          <tr><td class="rank-num">8</td><td>Turfer</td><td>Turfer</td><td><span class="rank-badge badge-mid">Turfer</span></td></tr>
+          <tr><td class="rank-num">7</td><td>Lil Member</td><td>Bündnis Rang</td><td><span class="rank-badge badge-low">Bündnis</span></td></tr>
+          <tr><td class="rank-num">6</td><td>Criminal Mind</td><td>Member</td><td><span class="rank-badge badge-low">Member</span></td></tr>
+          <tr><td class="rank-num">5</td><td>Associates</td><td>Member</td><td><span class="rank-badge badge-low">Member</span></td></tr>
+          <tr><td class="rank-num">4</td><td>Young Mara</td><td>Member</td><td><span class="rank-badge badge-low">Member</span></td></tr>
+          <tr><td class="rank-num">3</td><td>Dealer</td><td>Tütchen Rang</td><td><span class="rank-badge badge-low">Lowrank</span></td></tr>
+          <tr><td class="rank-num">2</td><td>Young G</td><td>Neuling</td><td><span class="rank-badge badge-low">Lowrank</span></td></tr>
+          <tr><td class="rank-num">1</td><td>Snitch</td><td>Strafrang</td><td><span class="rank-badge badge-straf">Strafrang</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 4. AUSZAHLUNGSSYSTEM ─── -->
+<section class="section">
+  <div class="container" style="position:relative">
+    <div class="section-number">04</div>
+    <div class="section-label">Kapitel 04</div>
+    <h2 class="section-title">Auszahlungs<span>system</span></h2>
+
+    <p class="text-block">Members schätzen ihre Aktivität selbst ein — die Leaderschaft prüft und begründet per Discord. Das System kann durch Leaderschafts-Entscheidungen jederzeit angepasst werden.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Aktivität</th>
+            <th>Gewinn</th>
+            <th>Verlust</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Airdrop</td><td class="money-pos">+ 4.000 $</td><td class="money-neg">- 2.000 $</td></tr>
+          <tr><td>Turf</td><td class="money-pos">+ 3.000 $</td><td class="money-neg">- 1.000 $</td></tr>
+          <tr><td>Bankraub</td><td class="money-pos">+ 5.000 $</td><td class="money-neg">- 6.000 $</td></tr>
+          <tr><td>Cayo Perico</td><td class="money-pos">+ 5.000 $</td><td class="money-neg">- 2.500 $</td></tr>
+          <tr><td>Fort Zancudo</td><td class="money-pos">+ 5.000 $</td><td class="money-neg">- 2.500 $</td></tr>
+          <tr><td>Achievements (z.B. Ladenraub)</td><td class="money-pos">+ 6.500 $ / Stück</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 5. LEADERSCHAFT ─── -->
+<section class="section">
+  <div class="container" style="position:relative">
+    <div class="section-number">05</div>
+    <div class="section-label">Kapitel 05</div>
+    <h2 class="section-title">Leader<span>schaft</span></h2>
+
+    <div class="leader-grid">
+      <div class="leader-card">
+        <div class="leader-role">👑 OG · Leader</div>
+        <div class="leader-name">Beetle Juice</div>
+        <div class="leader-id">OG</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-role">⚡ Vize OG</div>
+        <div class="leader-name">Ahoi Brause</div>
+        <div class="leader-id">ID: 56349 · Ex-Admin</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-role">⚡ Vize OG</div>
+        <div class="leader-name">Vave Sandmann</div>
+        <div class="leader-id">ID: 26824 · Ex-Admin</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-role">⚡ Vize OG</div>
+        <div class="leader-name">Chun Ghost</div>
+        <div class="leader-id">ID: 20360 · Ex-Admin</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      Unsere Leaderschaft besteht ausschließlich aus Ex-Admins — ein enormer Vorteil. Sie kennen das Regelwerk in- und auswendig, können eigenständig denken und zeigen starke Führungsqualitäten.
+    </div>
+
+    <p class="text-block">Plan: Aktive Suche nach loyalen Managern, die das Team langfristig ergänzen.</p>
+  </div>
+</section>
+
+<!-- ─── 6. WARUM ICH ─── -->
+<section class="section">
+  <div class="container" style="position:relative">
+    <div class="section-number">06</div>
+    <div class="section-label">Kapitel 06</div>
+    <h2 class="section-title">Warum ich <span>Leader</span> werden sollte</h2>
+
+    <p class="text-block">
+      Ich weiß, viele sehen mich nur als Troller — aber da steckt weitaus mehr dahinter. Jedes Mal, wenn ich Verantwortung übernommen habe, habe ich meinen Job gut gemacht: als Vize, als Highrank, ohne einen einzigen Frak-Warn. Die Logs belegen meine Aktivität bei Events und Achievements.
+    </p>
+
+    <p class="text-block">
+      Ich war Vize oder in der Leaderschaft bei: <strong>Grove (Kris Kalaschnikow & Tessa Blitzeblank), Vagos (Egon Kneipenkrieger), Ballas (Underwood), Mara, Bloods (Aslan Syndikat)</strong>. In der SANG habe ich die tote AF-Abteilung in 2 Tagen auf <strong>~20 aktive Member</strong> gebracht — aus dem Nichts.
+    </p>
+
+    <ul class="bullet-list">
+      <li>Nie in einer Fraktion einen <strong>Frak-Warn</strong> eingebracht</li>
+      <li>Kläre interne Probleme <strong>schnell & mit vollem Verständnis</strong></li>
+      <li>Leite aktuell mit Vave & Roger die <strong>Familie Arbeitsamt</strong> – das Ghetto ist unser Gebiet</li>
+      <li>Plane einen <strong>Info-Channel</strong> für neue Spieler: Regeln kurz & knapp erklärt</li>
+      <li>Leaderschaft aus <strong>4 Ex-Admins</strong> – starke, regelkundige Basis</li>
+      <li>Ich verspreche: <strong>Kein leeres Lager, maximale Aktivität</strong></li>
+    </ul>
+
+    <div class="highlight-box">
+      Mara war für mich immer ein besonderer Ort. Als Leader werde ich die einst aktivste Fraktion wieder zu dem machen, was sie war — und noch mehr.
+    </div>
+  </div>
+</section>
+
+<!-- ─── 7. RANK-UP-SYSTEM ─── -->
+<section class="section">
+  <div class="container" style="position:relative">
+    <div class="section-number">07</div>
+    <div class="section-label">Kapitel 07</div>
+    <h2 class="section-title">Rank-Up<span>-System</span></h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Rang</th>
+            <th>Voraussetzungen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rank-num">16</span> Turf Leader</td><td>Auswahlverfahren (wenn gesucht)</td></tr>
+          <tr><td><span class="rank-num">15</span> Gang Manager</td><td>Lange als Manager + Bewerbung</td></tr>
+          <tr><td><span class="rank-num">14</span> Enforcer</td><td>Von Leaderschaft ausgewählt</td></tr>
+          <tr><td><span class="rank-num">13</span> Manager</td><td>Aktivität + Führungsqualitäten + Regelkenntnisse</td></tr>
+          <tr><td><span class="rank-num">12</span> Over Boss</td><td>Helfer für Event Manager</td></tr>
+          <tr><td><span class="rank-num">11</span> Hood Boss</td><td>Leaderschafts-Vertrauen</td></tr>
+          <tr><td><span class="rank-num">10</span> Master Mind</td><td>Aktivität + Top-Leistungen</td></tr>
+          <tr><td><span class="rank-num">9</span> Recruiter</td><td>Hohe Aktivität</td></tr>
+          <tr><td><span class="rank-num">8</span> Turfer</td><td>Revo-Skills + Turf-Leads</td></tr>
+          <tr><td><span class="rank-num">7</span> Lil Member</td><td>Bündnis mit Family + Loyalität</td></tr>
+          <tr><td><span class="rank-num">6</span> Criminal Mind</td><td>Aktivität</td></tr>
+          <tr><td><span class="rank-num">5</span> Associates</td><td>Aktivität</td></tr>
+          <tr><td><span class="rank-num">4</span> Young Mara</td><td>Aktivität</td></tr>
+          <tr><td><span class="rank-num">3</span> Dealer</td><td>Nach einigen Tagen auf Rang 2</td></tr>
+          <tr><td><span class="rank-num">2</span> Young G</td><td>Neuling – Einstieg</td></tr>
+          <tr><td><span class="rank-num">1</span> Snitch</td><td>Strafrang bei Regelverstoß</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STARTPLAN ─── -->
+<section class="section">
+  <div class="container" style="position:relative">
+    <div class="section-number">+</div>
+    <div class="section-label">Bonus · Startplan</div>
+    <h2 class="section-title">Die ersten <span>3 Tage</span></h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-day">Tag 1</div>
+        <div class="timeline-title">Organisations-Tag</div>
+        <ul class="bullet-list">
+          <li>Leaderschaft wird eingeladen & Ränge werden erstellt</li>
+          <li>Zugriffe & Rechte für jeden Rang werden festgelegt</li>
+          <li>Lager wird mit eigenen Gegenständen aufgefüllt — <strong>von Anfang an vollständig befüllt</strong></li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-day">Tag 2</div>
+        <div class="timeline-title">Präsenz zeigen</div>
+        <ul class="bullet-list">
+          <li>Weitere Member werden eingeladen</li>
+          <li>Durchfahrt durchs Ghetto — <strong>Wir zeigen, wer wir sind</strong></li>
+          <li>Unsere Präsenz soll jedem auffallen: Mara ist zurück</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-day">Tag 3</div>
+        <div class="timeline-title">Erste Aktion</div>
+        <ul class="bullet-list">
+          <li>Überfall auf <strong>Fort Zancudo oder Cayo Perico</strong></li>
+          <li>Gemeinsamer <strong>Bankraub</strong></li>
+          <li>Koordinierte <strong>Geiselnahme</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SCHLUSSWORT ─── -->
+<div class="closing">
+  <div class="closing-title">🌊 Die Welle kommt.</div>
+  <div class="closing-sub">Mara ist bereit — sind sie es?</div>
+  <p style="max-width:600px;margin:0 auto 40px;color:var(--muted);font-size:17px;line-height:1.8">
+    Ich habe bewiesen, dass ich Verantwortung tragen kann. Mit einer starken Leaderschaft aus Ex-Admins, klaren Strukturen und echtem Engagement werde ich Mara zur aktivsten Fraktion auf dem Server machen. Kein leeres Lager. Kein Troll-Chaos. Nur loyale Member, maximale Aktivität und die Blaue Welle.
+  </p>
+  <div class="closing-sig">JASPER · ID 40411</div>
+</div>
+
+</body>
+</html>

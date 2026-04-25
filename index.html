@@ -492,9 +492,83 @@
     padding: 16px 40px;
     letter-spacing: 6px;
   }
+
+  /* ─── MUSIC PLAYER ─── */
+  .music-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    background: var(--bg2);
+    border: 1px solid var(--blue);
+    border-radius: 50px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--blue-glow);
+    text-transform: uppercase;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(26,63,255,0.3);
+  }
+
+  .music-btn:hover {
+    background: var(--blue-dark);
+    color: var(--accent);
+    box-shadow: 0 0 30px rgba(26,63,255,0.6);
+  }
+
+  .music-icon {
+    font-size: 18px;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .music-icon.paused { animation: none; opacity: 0.5; }
 </style>
 </head>
 <body>
+
+<!-- Hidden YouTube iframe -->
+<iframe id="yt-player"
+  src="https://www.youtube.com/embed/gF3jG8oP6pg?autoplay=1&loop=1&playlist=gF3jG8oP6pg&controls=0&mute=0"
+  allow="autoplay"
+  style="display:none"
+  title="music">
+</iframe>
+
+<!-- Music toggle button -->
+<div class="music-btn" onclick="toggleMusic()" id="music-btn">
+  <span class="music-icon" id="music-icon">🎵</span>
+  <span id="music-label">Seso – Wenn es Nacht wird</span>
+</div>
+
+<script>
+  let playing = true;
+  const iframe = document.getElementById('yt-player');
+
+  function toggleMusic() {
+    const icon = document.getElementById('music-icon');
+    if (playing) {
+      iframe.src = '';
+      icon.textContent = '⏸';
+      icon.classList.add('paused');
+    } else {
+      iframe.src = 'https://www.youtube.com/embed/gF3jG8oP6pg?autoplay=1&loop=1&playlist=gF3jG8oP6pg&controls=0&mute=0';
+      icon.textContent = '🎵';
+      icon.classList.remove('paused');
+    }
+    playing = !playing;
+  }
+</script>
 
 <!-- ─── HERO ─── -->
 <section class="hero">

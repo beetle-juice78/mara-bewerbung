@@ -542,50 +542,6 @@
   <source src="musik.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Fullscreen Enter Overlay -->
-<div id="enter-screen" style="
-  position: fixed; inset: 0; z-index: 9999;
-  background: #070a14;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  cursor: pointer;
-  text-align: center;
-">
-  <div style="
-    font-family: 'Black Ops One', cursive;
-    font-size: clamp(40px, 10vw, 100px);
-    color: white;
-    text-shadow: 0 0 40px rgba(26,63,255,0.9);
-    margin-bottom: 10px;
-  ">MARA</div>
-  <div style="
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(12px, 3vw, 18px);
-    letter-spacing: 6px;
-    color: #3a5fff;
-    text-transform: uppercase;
-    margin-bottom: 50px;
-  ">Marabunta Grande</div>
-  <div style="
-    font-family: 'Oswald', sans-serif;
-    font-size: 14px;
-    letter-spacing: 4px;
-    color: white;
-    text-transform: uppercase;
-    border: 1px solid #1a3fff;
-    padding: 16px 40px;
-    border-radius: 2px;
-    animation: blink 1.5s infinite;
-  ">🌊 Klicke um zu betreten</div>
-</div>
-
-<style>
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-</style>
-
 <!-- Music toggle button -->
 <div class="music-btn" onclick="toggleMusic()" id="music-btn">
   <span class="music-icon" id="music-icon">🎵</span>
@@ -596,13 +552,15 @@
   const audio = document.getElementById('bg-audio');
   let playing = false;
 
-  document.getElementById('enter-screen').addEventListener('click', function() {
-    audio.play().then(() => {
+  // Autoplay on first user interaction
+  document.addEventListener('click', function startAudio() {
+    if (!playing) {
+      audio.play();
       playing = true;
       document.getElementById('music-icon').textContent = '🎵';
-    }).catch(e => console.log(e));
-    document.getElementById('enter-screen').style.display = 'none';
-  });
+    }
+    document.removeEventListener('click', startAudio);
+  }, { once: true });
 
   function toggleMusic() {
     const icon = document.getElementById('music-icon');

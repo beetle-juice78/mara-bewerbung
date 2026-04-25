@@ -537,13 +537,10 @@
 </head>
 <body>
 
-<!-- Hidden YouTube iframe -->
-<iframe id="yt-player"
-  src="https://www.youtube.com/embed/gF3jG8oP6pg?autoplay=1&loop=1&playlist=gF3jG8oP6pg&controls=0&mute=0"
-  allow="autoplay"
-  style="display:none"
-  title="music">
-</iframe>
+<!-- Direct MP3 Audio -->
+<audio id="bg-audio" loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
 
 <!-- Music toggle button -->
 <div class="music-btn" onclick="toggleMusic()" id="music-btn">
@@ -552,21 +549,32 @@
 </div>
 
 <script>
-  let playing = true;
-  const iframe = document.getElementById('yt-player');
+  const audio = document.getElementById('bg-audio');
+  let playing = false;
+
+  // Autoplay on first user interaction
+  document.addEventListener('click', function startAudio() {
+    if (!playing) {
+      audio.play();
+      playing = true;
+      document.getElementById('music-icon').textContent = '🎵';
+    }
+    document.removeEventListener('click', startAudio);
+  }, { once: true });
 
   function toggleMusic() {
     const icon = document.getElementById('music-icon');
     if (playing) {
-      iframe.src = '';
+      audio.pause();
       icon.textContent = '⏸';
       icon.classList.add('paused');
+      playing = false;
     } else {
-      iframe.src = 'https://www.youtube.com/embed/gF3jG8oP6pg?autoplay=1&loop=1&playlist=gF3jG8oP6pg&controls=0&mute=0';
+      audio.play();
       icon.textContent = '🎵';
       icon.classList.remove('paused');
+      playing = true;
     }
-    playing = !playing;
   }
 </script>
 
